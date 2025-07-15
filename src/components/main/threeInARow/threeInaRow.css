@@ -1,0 +1,33 @@
+.threeIn{
+    width: 100%;
+    height: 500px;
+    background-color: red;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.cell {
+    background-color: greenyellow;
+    width: 100px;
+    height: 100px;
+}
+
+.scoreGame {
+    width: 250px;
+    height: 150px;
+    background-color: orange;
+}
+
+.resetPoints{
+    width: 150px;
+    height: 30px;
+    background-color: rgb(242, 2, 150);
+}
+
+.resetGame {
+    width: 150px;
+    height: 30px;
+    background-color: aqua;
+}
