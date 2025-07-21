@@ -1,8 +1,11 @@
-
+import { loadScore } from "/src/utils/threeInARowUtils";
+import {createScore} from "/src/utils/threeInARowUtils"
 import './playNow.css';
 
 
 export default function playNow (createGameFn) {
+
+    loadScore();
 
     let gameContainer = document.querySelector('.gameContainer');
 
@@ -13,7 +16,10 @@ export default function playNow (createGameFn) {
     }
 
     gameContainer.innerHTML = '';
-
     gameContainer.style.display = 'block';
+    
     createGameFn(gameContainer);
-}
+    const {loadPoints} = createScore();
+    window.updatePointsUI = loadPoints;
+
+};

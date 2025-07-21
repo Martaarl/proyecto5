@@ -4,9 +4,6 @@ import './style.css'
 
 
 
-
-
-
 createHeader();
 createCards();
 

@@ -1,43 +1,19 @@
-import './threeInaRow.css'
+import {  loadScore, keepPoints} from "/src/utils/threeInARowUtils";
+import './threeInaRow.css';
 
-export default function createThreeInARow (container) {
-    
-    const main = document.querySelector('main');
+export default function createThreeInARow (table) {
     
     const board = Array(9).fill("");
+    let currentPlayer = "X";
+    let gameActive = true;
+
+    window.threeInState = {board, currentPlayer, gameActive};
 
     const winPosibilities = [
         [0,1,2],[3,4,5], [6,7,8],
         [0,3,6], [1,4,7],[2,5,8], 
         [0,4,8], [2,4,6],
     ];
-
-    function loadScore (){
-        const data = localStorage.getItem('puntuacionTresEnRaya');
-        return data ? JSON.parse(data) : { X: 0, O: 0, empates: 0};
-    };
-
-    function keepPoints () {
-        localStorage.setItem('puntuacionTresEnRaya', JSON.stringify(points));
-    };
-
-    let points = loadScore();
-
-    const score = document.createElement('div');
-    score.className = 'scoreGame';
-
-    const winnerPoints= document.createElement('p');
-    winnerPoints.className = 'points';
-    score.appendChild(winnerPoints);
-
-    function loadPoints () {
-        winnerPoints.textContent = `❎ X: ${points.X} pts | 🅾️ O: ${points.O} | ＝ Empates: ${points.empates}`
-    }
-
-    loadPoints();
-
-    let currentPlayer = "X";
-    let gameActive = true;
 
     const threeIn = document.createElement('div');
     threeIn.className = 'threeIn';
@@ -48,79 +24,64 @@ export default function createThreeInARow (container) {
         cell.dataset.index = index;
 
         threeIn.appendChild(cell);
-
         cell.addEventListener('click', () => handleClick(cell, index));
     }
 
-    function handleClick(cell, index){
-        if (!gameActive|| board[index]) return;
+    function checkWin(player){
+        return winPosibilities.some(combo=>combo.every(index => window.threeInState.board [index] === player));
+    }
 
-        board[index] = currentPlayer;
-        cell.textContent = currentPlayer;
+    function handleClick(cell, index){
+        console.log('click en celda', index)
+        const state = window.threeInState;
+        if (!state.gameActive|| state.board[index]) return;
+
+        state.board[index] = state.currentPlayer;
+        cell.textContent = state.currentPlayer;
         cell.className = 'taken';
 
-        if (checkWin(currentPlayer)){
-            alert (`${currentPlayer} ha ganado la partida. +5ptos`);
-            gameActive = false;
-            points[currentPlayer] += 5;
-            keepPoints();
-            loadPoints();
+       /*const points = loadScore();*/
+
+        if (checkWin(state.currentPlayer)){
+            alert (`${state.currentPlayer} ha ganado la partida. +5ptos`);
+            const points = loadScore();
+            state.gameActive = false;
+            points[state.currentPlayer] += 5;
+            keepPoints(points);
+            if (window.updatePointsUI) window.updatePointsUI();
             return;
         }
 
-        if (board.every(val => val)){
+        if (state.board.every(val => val)){
             alert ('Ha empatado');
+            const points = loadScore();
             points.empates += 1;
-            keepPoints();
-            loadPoints();
-            gameActive = false;
+            keepPoints(points);
+            state.gameActive = false;
+            if (window.updatePointsUI) window.updatePointsUI();
             return;
         }
 
-        currentPlayer = currentPlayer === 'X' ? "O" : "X";
+        state.currentPlayer = (state.currentPlayer === 'X') ? "O" : "X";
     };
 
+    table.appendChild(threeIn);
 
-    const reButton = document.createElement('button');
-    reButton.className='resetPoints';
-    reButton.textContent = 'Reiniciar puntuación';
+    return threeIn;
 
-    const resetButton = document.createElement('button');
-    resetButton.className ='resetGame';
-    resetButton.textContent = '🔁 Juega otra vez';
+}
 
-    score.append(reButton, resetButton);
-    main.append(score, threeIn);
-  
-    function checkWin(player){
-        return winPosibilities.some(combo=>combo.every(index => board [index] === player));
-    }
+export function resetGame (){
+    const state = window.threeInState;
+    if(!state) return;
 
+    state.board.fill("");
+    state.currentPlayer="X";
+    state.gameActive= true; 
 
-    function resetPoints() {
-        points = {
-            X: 0, O: 0, empates: 0
-        }
-        keepPoints();
-        loadPoints();
-    }
-
-    function resetGame () {
-        board.fill("");
-        const cells = document.getElementsByClassName('cell');
-
-        cells.forEach(cell => {
-            cell.textContent = "";
-            cell.classList.remove('taken');
-        });
-
-        /*currentPlayer = "X";
-        gameActive= true;*/
-    }
-
-    reButton.addEventListener('click', resetPoints);
-    resetButton.addEventListener('click', resetGame);
- 
-    container.appendChild(threeIn);
-
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+        cell.textContent = "";
+        cell.classList.remove('taken');
+    });
 }
