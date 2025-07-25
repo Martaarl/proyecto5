@@ -1,11 +1,9 @@
-import { loadScore } from "/src/utils/threeInARowUtils";
-import {createScore} from "/src/utils/threeInARowUtils"
+import createThreeInARow from '../threeInARow/threeInARow';
 import './playNow.css';
 
 
-export default function playNow (createGameFn) {
 
-    loadScore();
+export default function playNow (createGame) {
 
     let gameContainer = document.querySelector('.gameContainer');
 
@@ -18,8 +16,6 @@ export default function playNow (createGameFn) {
     gameContainer.innerHTML = '';
     gameContainer.style.display = 'block';
     
-    createGameFn(gameContainer);
-    const {loadPoints} = createScore();
-    window.updatePointsUI = loadPoints;
-
+    createGame(gameContainer);
+ 
 };

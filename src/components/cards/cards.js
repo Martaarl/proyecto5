@@ -11,8 +11,8 @@ export default function createCards (){
     const sectionGames = document.createElement('section');
     sectionGames.className = 'sectionGames'; 
 
-    /*const gameContainer = document.createElement('section');
-    gameContainer.className = 'gameContainer';*/
+    const gameContainer = document.createElement('section');
+    gameContainer.className = 'gameContainer';
 
     const games = [
     {
