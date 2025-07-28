@@ -1,6 +1,4 @@
-import createThreeInARow from '../threeInARow/threeInARow';
 import './playNow.css';
-
 
 
 export default function playNow (createGame) {

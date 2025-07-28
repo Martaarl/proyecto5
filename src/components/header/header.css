@@ -5,11 +5,13 @@ header{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(to right, #ea580c, #c2410c, #7c3aed);
+    animation: wave 3s ease-in-out infinite;
 }
 
 
 
-@keyframes fadeSlideIn {
+@keyframes title {
     0% {
         opacity: 0;
         transform: translateY(-20px);
@@ -21,10 +23,34 @@ header{
 }
 
 .title {
-    color: var(--rtc-primary-color);
-    animation: fadeSlideIn 1s ease-out forwards;
+
+    animation: titleWave 1s ease-out forwards;
     font-size: 2.5rem;
-    color: var(--rtc-primary-color);
+    color: #7c3aed;
     text-align: center;
     margin: 1rem 0;
+}
+
+.speechBubble {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2rem 3rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: bubbleWave 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+.speechBubble::after{
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid rgba(255, 255, 255, 0.95);
 }
