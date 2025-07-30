@@ -1,5 +1,6 @@
 import { keepPoints, loadPoints, loadScore, resetPoints, resetGame} from "/src/utils/threeInARowUtils";
 import './threeInaRow.css';
+import '/src/components/main/playNow/playNow.css';
 
 export default function createThreeInARow (container) {
 

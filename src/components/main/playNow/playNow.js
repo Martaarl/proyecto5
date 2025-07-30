@@ -12,7 +12,7 @@ export default function playNow (createGame) {
     }
 
     gameContainer.innerHTML = '';
-    gameContainer.style.display = 'block';
+    gameContainer.style.display = 'flex';
     
     createGame(gameContainer);
  
