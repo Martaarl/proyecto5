@@ -18,9 +18,8 @@ export default function createCards (){
     {
         title: 'Three in a row',
         module: createThreeInARow,
-        image: '#',
+        image: '/public/assets/threeIn.png',
         score: '6/10⭐️',
-        link: '#'
     },
     {
         title: 'Pokemon Quiz',
@@ -34,10 +33,8 @@ export default function createCards (){
         module: createWhoIsWho,
         image: '#',
         score: '8/10⭐️',
-        link: '#',
     }*/
     ]
-    /*const gamesLinks = ['threeInARow.js', 'pokemonQuiz.js', 'whoIsWho.js'];*/
     
     games.forEach((game) => {
 
@@ -60,7 +57,6 @@ export default function createCards (){
         const button = document.createElement('a');
         button.className = 'gameButton';
         button.textContent='Play';
-        button.href = '#';
         button.addEventListener('click', (e) => {
             e.preventDefault();
             sectionGames.remove();

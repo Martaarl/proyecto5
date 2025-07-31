@@ -36,16 +36,24 @@ export function createPokemonQuiz () {
    let currentPokemon;
 
    const pokemonType = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy", "unknown", "shadow"];  
-   pokemonType.forEach (type => {
-      const pokeButton = document.createElement('button');
-      pokeButton.className = 'chooseButton';
-      pokeButton.textContent = type;
-      pokeButton.addEventListener('click', () => {
-         const result = checkPokemon(currentPokemon, type)
-         answer.textContent = result;
-      })
-      pokeButtonChoose.appendChild(pokeButton);
-   });
+   const randomType = () => {
+      let pokemonAleatory = [];
+      for (let index = 0; index < 3; index++) {
+         const poks = Math.floor(Math.random() * pokemonType.length);
+         randomType.push(pokemonType.splice(poks, 1)[0]);
+      }
+      pokemonAleatory.forEach (type => {
+         const pokeButton = document.createElement('button');
+         pokeButton.className = 'chooseButton';
+         pokeButton.textContent = type;
+         pokeButton.addEventListener('click', () => {
+            const result = checkPokemon(currentPokemon, type)
+            answer.textContent = result;
+         })
+         pokeButtonChoose.appendChild(pokeButton);
+      });
+   }
+ 
 
    pokeButtonsDiv.appendChild(pokeStart);
    pokeBoard.append(pokeButtonsDiv, pokeShowed, pokeButtonChoose, answer);

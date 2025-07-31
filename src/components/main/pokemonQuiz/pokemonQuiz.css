@@ -1,31 +1,55 @@
 .pokeBoard{
     width: 90%;
+    max-width: 500px;
     height: 400px;
     background-color: red;
     align-self: center;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .pokeButtonsDiv{
-    width: 80%;
-    height: 300px;
+    width: 50%;
+    height: 50%;
     background-color: purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokeShowed {
+    width: 50%;
+    height: 50%;
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .buttonStart{
-    width: 100px;
-    height: 100px;
+    width: 50%;
+    height: 50%;
     border-radius: 20px;
     background-color: orange;
+
 }
 
 .pokeButtonChoose{
-    width: 150px;
-    height: 150px;
+    width: 50%;
+    height: 50%;
     background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .answer {
-    width: 50px;
-    height: 50px;
+    width: 50%;
+    height: 50%;
     background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -5,8 +5,15 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    padding: var(--rtc-padding-s);
+    gap: var(--rtc-gap-l);
+    padding-top: var(--rtc-padding-l);
+}
+
+.sectionGames div {
+    width: 40%;
+    height: auto;
+    gap: var(--rtc-gap-s);
+    padding: 5px;
 }
 
 @keyframes shake {
@@ -17,20 +24,19 @@
     100% {transform: rotate(0deg);}
 }
 
-
 .divGames{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 90%;
     height: 200px;
-    border: 3px solid var(--rtc-secondary-color);
-    border-radius: 20px;
+    border: 3px solid;
+    border-image: linear-gradient(45deg, #b54b00, #5b27b6) 1 ;
+    width: 100%;
     background-color: var(--rtc-secondary-background-color);
 }
 .divGames.shake{
-    animation: shake 0.5s infinite;
+    animation: shake 0.6s infinite;
 }
 
 .divGames:hover{
@@ -38,12 +44,26 @@
 }
 
 .divGames a{
-    color: var(--rtc-tertiary-color);
+    color: var(--rtc-secondary-background-color);
+    background-color: var(--rtc-primary-background-color) ;
     text-decoration: none;
+    border:  3px #b54b00 solid;
+    border-radius: 20px;
+    width: 35%;
+    display: flex;
+    justify-content: center;
 }
 
 .divGames img {
     width: 100px;
     height: 100px;
 }
+
+.titleGame {
+    color: var(--rtc-primary-color);
+}
+.score{
+    color: var(--rtc-primary-background-color);
+}
+
 

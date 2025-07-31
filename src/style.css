@@ -7,17 +7,17 @@
   background-color: var(--rtc-primary-background-color);
   --rtc-primary-background-color: #000000;
   --rtc-secondary-background-color: rgb(255, 255, 255);
-  --rtc-primary-color:  rgb(200, 252, 248);
-  --rtc-secondary-color:  rgb(0, 255, 229);
-  --rtc-tertiary-color: rgb(0, 65, 58);
+  --rtc-primary-color:   #b54b00;
+  --rtc-secondary-color:  #5b27b6;
+  --rtc-tertiary-color: rgb(0, 0, 0);
 
   --rtc-margin-s: 10px;
   --rtc-margin-m: 15px;
   --rtc-margin-l: 20px;
 
   --rtc-padding-s: 10px;
-  --rtc-padding-m: 10px;
-  --rtc-padding-l: 10px;
+  --rtc-padding-m: 20px;
+  --rtc-padding-l: 30px;
 
   --rtc-gap-s: 10px;
   --rtc-gap-m: 15px;
