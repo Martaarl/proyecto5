@@ -1,5 +1,6 @@
+import { loadScore } from '../../../utils/pokemonQuizUtils/pokemonQuizUtils';
 import './pokemonQuiz.css'
-import { fetchApi, printPokemon, checkPokemon } from "/src/utils/pokemonQuizUtils/pokemonQuizUtils";
+import { fetchApi, printPokemon, randomType, resetPoints} from "/src/utils/pokemonQuizUtils/pokemonQuizUtils";
 
 export function createPokemonQuiz () {
    const section  = document.querySelector('.gameContainer');
@@ -22,10 +23,16 @@ export function createPokemonQuiz () {
          const pokemon = await fetchApi();
          currentPokemon = pokemon;
          printPokemon(pokemon, pokeShowed);
+
+         if (currentPokemon && currentPokemon.types) {
+            randomType(currentPokemon, score);
+         }
       } catch (error){
          console.error(error);
       }
    });
+
+   let currentPokemon;
 
    const pokeButtonChoose = document.createElement('div');
    pokeButtonChoose.className = 'pokeButtonChoose';
@@ -33,30 +40,25 @@ export function createPokemonQuiz () {
    const answer = document.createElement('div');
    answer.className = 'answer';
 
-   let currentPokemon;
-
-   const pokemonType = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy", "unknown", "shadow"];  
-   const randomType = () => {
-      let pokemonAleatory = [];
-      for (let index = 0; index < 3; index++) {
-         const poks = Math.floor(Math.random() * pokemonType.length);
-         randomType.push(pokemonType.splice(poks, 1)[0]);
-      }
-      pokemonAleatory.forEach (type => {
-         const pokeButton = document.createElement('button');
-         pokeButton.className = 'chooseButton';
-         pokeButton.textContent = type;
-         pokeButton.addEventListener('click', () => {
-            const result = checkPokemon(currentPokemon, type)
-            answer.textContent = result;
-         })
-         pokeButtonChoose.appendChild(pokeButton);
-      });
-   }
- 
-
    pokeButtonsDiv.appendChild(pokeStart);
    pokeBoard.append(pokeButtonsDiv, pokeShowed, pokeButtonChoose, answer);
-   section.appendChild(pokeBoard);
+
+   const scoreDiv = document.createElement('div');
+    scoreDiv.className = 'scoreGame';
+
+    let score= document.createElement('p');
+    score.className = 'scorePoke';
+    score.textContent = `pokeJugador: 0 pts`;
+
+    const reButton = document.createElement('button');
+    reButton.className='resetPoints';
+    reButton.textContent = 'Reiniciar puntuación';
+
+    scoreDiv.append(score, reButton )
+    section.append(pokeBoard, scoreDiv);
+
+    loadScore(score);
+
+    reButton.addEventListener('click', () =>  resetPoints(score));
 
 }

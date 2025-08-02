@@ -43,6 +43,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    gap: 10px;
 }
 
 .answer {
@@ -52,4 +53,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.chooseButton {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+}
+
+.scoreGame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    max-width: 300px;
+    height: 150px;
+    gap: 10px;
+    background-color: var(--rtc-primary-background-color);
+    border: 5px solid;
+    border-image: linear-gradient(45deg, #b54b00, #5b27b6) 1 ;
+}
+
+.scorePoke{
+    width: 200px;
+    height: 20px;
+    background-color: pink;
+}
+
+.resetPoints {
+    background-color: yellow;
+    width: 150px;
+    height: 50px;
 }
