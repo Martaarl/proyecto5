@@ -91,7 +91,7 @@ export function randomType(currentPokemon, score){
       pokeButton.addEventListener('click', () => {
          const result = checkPokemon(currentPokemon, type, score);
          intentos++;
-         if (intentos >= 3) {
+         if (intentos > 2) {
             pokeButtonChoose.innerHTML='';
             resetPoints(score);
          }

@@ -1,5 +1,6 @@
 import { loadScore } from '../../../utils/pokemonQuizUtils/pokemonQuizUtils';
-import './pokemonQuiz.css'
+import './pokemonQuiz.css';
+import '/src/components/main/playNow/playNow.css'
 import { fetchApi, printPokemon, randomType, resetPoints} from "/src/utils/pokemonQuizUtils/pokemonQuizUtils";
 
 export function createPokemonQuiz () {
@@ -54,8 +55,13 @@ export function createPokemonQuiz () {
     reButton.className='resetPoints';
     reButton.textContent = 'Reiniciar puntuación';
 
-    scoreDiv.append(score, reButton )
-    section.append(pokeBoard, scoreDiv);
+    scoreDiv.append(score, reButton );
+
+    const pokeAside = document.createElement('aside');
+    pokeAside.className = 'pokeAside';
+    pokeAside. textContent = 'Consigue la máxima puntuación posible ¡Solo tienes dos intentos por Pokemon!';
+
+    section.append(pokeBoard,pokeAside, scoreDiv);
 
     loadScore(score);
 

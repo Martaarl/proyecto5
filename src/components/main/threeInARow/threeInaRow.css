@@ -1,6 +1,14 @@
-@import '/src/components/main/playNow/playNow.css';
+.gameContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--rtc-gap-m);
+    padding-top: 20px;
+}
+
 .threeIn{
-    width: 90%;
+    width: 60%;
     max-width: 700px;
     height: 50vh;
     background-color: var(--rtc-primary-background-color);
@@ -29,14 +37,23 @@
     font-size: 50px;
     justify-self: center;
 }
-
+.threeInAside{
+    display: flex;
+    width: 20%;
+    background-color: var(--rtc-primary-background-color);
+    color: var(--rtc-secondary-background-color);
+    border: 5px solid;
+    border-image: linear-gradient(45deg, #b54b00, #5b27b6) 1 ;
+    text-align: center;
+}
 .scoreGame {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 70%;
     max-width: 300px;
+    margin-right: 70%;
     height: 150px;
     gap: 10px;
     background-color: var(--rtc-primary-background-color);
@@ -47,6 +64,20 @@
 .points{
     color: var(--rtc-secondary-background-color);
 }
+
+@media (max-width: 400px) {
+    .gameContainer{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;}
+    .threeIn{
+        width: 80%;
+    }
+    .threeInAside{
+        width: 70%;
+    }
+}
+
 @media (max-width: 300px){
     .points {
        font-size: 15px;
@@ -75,5 +106,4 @@
     color: var(--rtc-secondary-background-color);
     box-shadow: 
     0 5px 5px #a57bef85;
-   
 }

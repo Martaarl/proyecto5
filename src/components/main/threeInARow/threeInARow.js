@@ -1,4 +1,4 @@
-import { keepPoints, loadPoints, loadScore, resetPoints, resetGame} from "/src/utils/threeInARowUtils";
+import { keepPoints, loadPoints, loadScore, resetPoints, resetGame} from "/src/utils/threeInARowUtils/threeInARowUtils";
 import './threeInaRow.css';
 import '/src/components/main/playNow/playNow.css';
 
@@ -26,10 +26,7 @@ export default function createThreeInARow (container) {
         threeIn.appendChild(cell);
 
         cell.addEventListener('click', () => handleClick(cell, index));
-       
     }
-
-    section.appendChild(threeIn);
 
     const scoreDiv = document.createElement('div');
     scoreDiv.className = 'scoreGame';
@@ -47,7 +44,11 @@ export default function createThreeInARow (container) {
     resetButton.textContent = '🔁 Juega otra vez';
 
     scoreDiv.append(points, reButton, resetButton);
-    section.appendChild(scoreDiv);
+
+    const threeInAside = document.createElement('aside');
+    threeInAside.className = 'threeInAside';
+    threeInAside.textContent = 'Juego a dos jugadores ¡Intenta completar tu línea antes que tu rival!';
+    section.append(threeIn, threeInAside, scoreDiv);
 
     loadScore(points);
 

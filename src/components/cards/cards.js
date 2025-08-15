@@ -1,7 +1,7 @@
 import './cards.css';
 import createThreeInARow from '../main/threeInARow/threeInARow'; 
 import { createPokemonQuiz } from "/src/components/main/pokemonQuiz/pokemonQuiz"
-/*import '/src/components/main/whoIsWho/whoIsWho';*/
+import createWhoIsWho from '../main/whoIsWho/whoIsWho';
 import playNow from '../main/playNow/playNow.js';
 
 export default function createCards (){
@@ -24,16 +24,15 @@ export default function createCards (){
     {
         title: 'Pokemon Quiz',
         module: createPokemonQuiz, 
-        image: '#',
+        image: '/public/assets/pokemonQuiz.png',
         score: '9/10⭐️',
-        link: '#'
-    }/*,
+    },
     {
         title: 'Who Is Who',
         module: createWhoIsWho,
         image: '#',
         score: '8/10⭐️',
-    }*/
+    }
     ]
     
     games.forEach((game) => {
