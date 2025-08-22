@@ -1,4 +1,4 @@
-import './playNow.css';
+
 
 
 export default function playNow (createGame) {

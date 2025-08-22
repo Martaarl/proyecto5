@@ -1,6 +1,6 @@
 import { loadScore } from '../../../utils/pokemonQuizUtils/pokemonQuizUtils';
 import './pokemonQuiz.css';
-import '/src/components/main/playNow/playNow.css'
+
 import { fetchApi, printPokemon, randomType, resetPoints} from "/src/utils/pokemonQuizUtils/pokemonQuizUtils";
 
 export function createPokemonQuiz () {
