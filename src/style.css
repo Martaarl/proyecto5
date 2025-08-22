@@ -47,7 +47,6 @@ body {
   flex-direction: column;
 }
 
-/*Entre mdn y chatgpt he introducido keyframes para meter animación en mis títulos y cartas*/
 .gameContainer {
   display: none;
   position: relative;
