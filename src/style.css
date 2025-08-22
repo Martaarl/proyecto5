@@ -39,8 +39,22 @@ a{
  font-style: none;
 }
 
+main {
+  flex: 1;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 /*Entre mdn y chatgpt he introducido keyframes para meter animación en mis títulos y cartas*/
 .gameContainer {
   display: none;
   position: relative;
+  justify-content: center;
+}
+.sectionGames{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

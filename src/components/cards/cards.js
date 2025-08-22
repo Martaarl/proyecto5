@@ -30,7 +30,7 @@ export default function createCards (){
     {
         title: 'Who Is Who',
         module: createWhoIsWho,
-        image: '#',
+        image: '/public/assets/whoIs.png',
         score: '8/10⭐️',
     }
     ]

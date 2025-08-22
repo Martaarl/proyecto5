@@ -4,8 +4,8 @@ export default function whoIsCategories (whoIsQuestion, charPlaying, answerDiv )
         piel: ['clara', 'oscura'],
         cabello: ['rubio', 'negro', 'pelirrojo', 'marrón', 'gris'],
         gafas: [true, false],
-        camiseta: ['roja', 'azul', 'verde', 'amarilla', 'negra'],
-        accesorio: ['gorro', 'sombrero', null]
+        camiseta: ['roja', 'azul', 'verde', 'amarilla', 'negra', 'rosa', 'turquesa'],
+        accesorio: ['gorro', 'sombrero', 'no']
     }
     for (let category in categories) {
         let categoryDiv = document.createElement('div');
@@ -80,7 +80,7 @@ export function checkQuestions (charPlaying, category, options, answerDiv, saved
     }
     if(score<=0){
         answerDiv.textContent = '¡Se acabó el juego!';
-        whoIsCharacters.style.display=' none';
+        whoIsCharacters.style.display='none';
         possibleName.textContent = '';
         whoIsQuestions.textContent = '';
         }
