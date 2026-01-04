@@ -46,6 +46,7 @@ export default function createWhoIsWho () {
     ];
 
     let charPlaying;
+    let attempts = 2;
 
     const whoIs = document.createElement('div');
     whoIs.className = 'whoIsDiv';
@@ -75,7 +76,6 @@ export default function createWhoIsWho () {
         solutionButton.textContent = 'Check'
 
     possibleName.append(solutionText, solutionButton);
-
     whoIs.append(player, whoIsButton,possibleName, answerDiv);
 
     const whoIsCharacters = document.createElement('div');
@@ -83,6 +83,27 @@ export default function createWhoIsWho () {
 
     const whoIsQuestions = document.createElement('div');
     whoIsQuestions.className = 'whoIsQuestions';
+
+    const whoIsScore = document.createElement('div');
+    whoIsScore.className = 'whoIsScore';
+    whoIsScore.textContent = `Puntuación: ${initScore()}`;
+
+    const resetButtonWho = document.createElement('button');
+    resetButtonWho.className = 'resetButtonWho';
+    resetButtonWho.textContent = '¡Empieza de nuevo!';
+    resetButtonWho.addEventListener('click', () => {
+        resetScoreWho();
+        section.innerHTML = '';
+        createWhoIsWho();
+    })
+
+    const whoIsAside = document.createElement('aside');
+    whoIsAside.className = 'whoIsAside';
+    whoIsAside.textContent = '¡Adivina quién es! Haz preguntas sobre lo que ves y... ¡acierta! No olvides controlar tu puntuación... 😏'
+
+    whoIsScore.appendChild(resetButtonWho);
+    whoIsBoard.append(whoIs, whoIsCharacters, whoIsQuestions);
+    section.append(whoIsBoard, whoIsAside, whoIsScore);
 
     whoIsButton.addEventListener('click', () => {
             answerDiv.textContent = '';
@@ -106,7 +127,6 @@ export default function createWhoIsWho () {
             charImg = charImg.sort(()=> Math.random()-0.5);
 
             whoIsCharacters.innerHTML = '';
-
             charImg.forEach(character=>{
                 const charDiv = document.createElement('div');
                 charDiv.className= 'charDiv';
@@ -129,16 +149,12 @@ export default function createWhoIsWho () {
             whoIsCategories(whoIsQuestions, charPlaying, answerDiv, whoIsCharacters, possibleName);
         });
 
-        let attempts = 2;
-
         solutionButton.addEventListener('click', () => {
 
+            if(!charPlaying)return;
             const solution = solutionText.value.trim().toLowerCase();
-
-            if(!charPlaying){
-                return;
-            };
             if (!solution) return;
+
             if (solution === charPlaying.nombre.toLowerCase()) {
                 answerDiv.textContent = '¡HAS ACERTADO!';
                 increaseScore(100);
@@ -147,9 +163,8 @@ export default function createWhoIsWho () {
                 possibleName.textContent = '';
             } else {
                 attempts --;
-                answerDiv.textContent = '¡Prueba otra vez! Solo tienes un intento más';
+                //answerDiv.textContent =  attempts > 0 ? '¡Prueba otra vez! Solo tienes un intento más': '¡JUEGA OTRA VEZ!';
                 if (attempts === 0){
-                    answerDiv.textContent = 'JUEGA OTRA VEZ';
                     whoIsCharacters.style.display = 'none';
                     possibleName.textContent = '';
                 }
@@ -157,29 +172,9 @@ export default function createWhoIsWho () {
             
         });
 
-    whoIsBoard.append(whoIs, whoIsCharacters, whoIsQuestions);
+   
 
-    const whoIsAside = document.createElement('aside');
-    whoIsAside.className = 'whoIsAside';
-    whoIsAside.textContent = '¡Adivina quién es! Haz preguntas sobre lo que ves y... ¡acierta! No olvides controlar tu puntuación... 😏'
 
-    const whoIsScore = document.createElement('div');
-    whoIsScore.className = 'whoIsScore';
-    whoIsScore.textContent = `Puntuación: ${initScore()}`;
-
-    const resetButtonWho = document.createElement('button');
-    resetButtonWho.className = 'resetButtonWho';
-    resetButtonWho.textContent = '¡Empieza de nuevo!';
-    resetButtonWho.addEventListener('click', () => {
-        resetScoreWho();
-
-        const section = document.querySelector('.gameContainer');
-        section.innerHTML = '';
-        createWhoIsWho();
-    })
-
-    whoIsScore.appendChild(resetButtonWho);
-
-    section.append(whoIsBoard, whoIsAside, whoIsScore);
+  
 
 } 

@@ -66,6 +66,39 @@
     color: var(--rtc-secondary-background-color);
 }
 
+.gameAlert {
+    position: fixed;
+    background: black;
+     border: 5px solid;
+    border-image: linear-gradient(45deg, #b54b00, #5b27b6) 1 ;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.alertText {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
+.alertButton{
+     background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-family: "Anton", sans-serif
+}
+
+.hidden {
+    display: none;
+}
+
 @media (max-width: 400px) {
     .gameContainer{
         display: flex;

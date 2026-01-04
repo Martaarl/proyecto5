@@ -28,6 +28,23 @@ export default function createThreeInARow (container) {
         cell.addEventListener('click', () => handleClick(cell, index));
     }
 
+    const gameAlert = document.createElement('div');
+    gameAlert.className = "gameAlert hidden";
+
+    const alertText = document.createElement('p');
+    alertText.className = 'alertText';
+
+    const alertButton = document.createElement('button');
+    alertButton.textContent = 'Juega otra vez';
+    alertButton.className = 'alertButton';
+    alertButton.addEventListener('click', () =>{
+        gameAlert.classList.add('hidden');
+        resetGame(createThreeInARow, section);
+    })
+
+    gameAlert.append(alertText, alertButton);
+    section.appendChild(gameAlert);
+
     const scoreDiv = document.createElement('div');
     scoreDiv.className = 'scoreGame';
 
@@ -67,7 +84,8 @@ export default function createThreeInARow (container) {
 
     if (checkWin(currentPlayer)){
         gameActive = false;
-        alert (`${currentPlayer} ha ganado la partida: +5ptos`);
+        alertText.textContent = (`${currentPlayer} ha ganado la partida: +5ptos`);
+        gameAlert.classList.remove('hidden');
         pointsData[currentPlayer] +=5;
         keepPoints(pointsData);
         loadScore(points);
@@ -75,7 +93,7 @@ export default function createThreeInARow (container) {
     }
 
     if (!board.includes("") && gameActive){
-        alert('Ha habido un empate. +1 pto. ');
+        alertText.textContent=('Ha habido un empate. +1 pto. ');
         gameActive = false;
         pointsData.empate += 1;
         keepPoints(pointsData);
