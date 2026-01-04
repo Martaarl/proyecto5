@@ -5,9 +5,11 @@ export default function createHeader () {
 
     const main = document.querySelector('main');
     const header = document.querySelector('header');
+
+    header.innerHTML = '';
+
     header.addEventListener('click',() => {
        main.innerHTML = '';
-       main.appendChild(header);
        createCards();
     })
 
@@ -20,6 +22,5 @@ export default function createHeader () {
 
     speechBubble.appendChild(titleOfThePage);
     header.appendChild(speechBubble);
-    main.appendChild(header);
 
 }

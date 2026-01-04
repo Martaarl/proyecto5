@@ -47,6 +47,10 @@ body {
   flex-direction: column;
 }
 
+button{
+  cursor: pointer;
+}
+
 .gameContainer {
   display: none;
   position: relative;

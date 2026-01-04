@@ -94,6 +94,7 @@ export function randomType(currentPokemon, score){
          if (intentos > 2) {
             pokeButtonChoose.innerHTML='';
             resetPoints(score);
+            answer.textContent= 'Has agotado los dos intentos'
          }
          const answer = document.querySelector('.answer');
          answer.textContent = result;

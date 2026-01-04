@@ -53,11 +53,10 @@ export default function createCards (){
         scoreGame.className = 'score';
         scoreGame.textContent=game.score;
         
-        const button = document.createElement('a');
+        const button = document.createElement('button');
         button.className = 'gameButton';
         button.textContent='Play';
         button.addEventListener('click', (e) => {
-            e.preventDefault();
             sectionGames.remove();
             playNow(game.module);
         });

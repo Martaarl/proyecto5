@@ -9,6 +9,7 @@ header{
     background: linear-gradient(45deg, #000000, #b54b00, #000000, #5b27b6, #000000);
     background-size: 400% 400%;
     animation: purpleFlash 3s ease-in-out infinite;
+    cursor: pointer;
 }
 
 @keyframes purpleFlash {

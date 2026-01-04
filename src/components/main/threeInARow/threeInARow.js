@@ -20,7 +20,7 @@ export default function createThreeInARow (container) {
     threeIn.className = 'threeIn';
 
     for (let index = 0; index<board.length; index++) {
-        const cell = document.createElement('div');
+        const cell = document.createElement('button');
         cell.className = 'cell';
         cell.textContent = "";
         threeIn.appendChild(cell);
@@ -61,6 +61,7 @@ export default function createThreeInARow (container) {
     board[index] = currentPlayer;
     cell.textContent = currentPlayer;
     cell.className = 'taken';
+    cell.disabled= true;
 
     let pointsData = loadPoints();
 

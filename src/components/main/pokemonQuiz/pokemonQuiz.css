@@ -46,6 +46,7 @@
     border-color:  #b54b00;
     background-color: var(--rtc-secondary-background-color);
     padding: 5px;
+    cursor: pointer;
 }
 
 @media (max-width: 300px) {
@@ -62,6 +63,7 @@
     flex-wrap: wrap;
     gap: 10px;
     background-color: #8f5fe1;
+    cursor: pointer;
   }
 
 .answer {
@@ -83,6 +85,7 @@
     background-color: var(--rtc-primary-background-color);
     border: 3px solid #b54b00;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .scoreGame {
@@ -113,6 +116,7 @@
     border: 3px solid var(--rtc-primary-color);
     width: 150px;
     height: 50px;
+    cursor: pointer;
 }
 
 .resetPoints :hover {
