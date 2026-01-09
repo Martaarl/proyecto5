@@ -89,15 +89,26 @@ export function randomType(currentPokemon, score){
       pokeButton.textContent = type;
 
       pokeButton.addEventListener('click', () => {
+         if (intentos>=2) {
+            return 
+         }
+
          const result = checkPokemon(currentPokemon, type, score);
          intentos++;
-         if (intentos > 2) {
-            pokeButtonChoose.innerHTML='';
-            resetPoints(score);
-            answer.textContent= 'Has agotado los dos intentos'
-         }
+
          const answer = document.querySelector('.answer');
          answer.textContent = result;
+
+         if (result === '¡Has acertado!') {
+            pokeButtonChoose.innerHTML = '';
+            return;
+         }
+
+         if (intentos >= 2) {
+            pokeButtonChoose.innerHTML = '';
+            answer.textContent = 'Has agotado los dos intentos 😔 vuelve a empezar';
+            resetPoints(score);
+         }
       })
 
       pokeButtonChoose.appendChild(pokeButton);

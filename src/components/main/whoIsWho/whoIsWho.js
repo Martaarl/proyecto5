@@ -106,6 +106,7 @@ export default function createWhoIsWho () {
     section.append(whoIsBoard, whoIsAside, whoIsScore);
 
     whoIsButton.addEventListener('click', () => {
+            resetScoreWho();
             answerDiv.textContent = '';
             solutionText.value = '';
             attempts = 2;
@@ -146,7 +147,7 @@ export default function createWhoIsWho () {
             });
 
             whoIsQuestions.innerHTML = ''; 
-            whoIsCategories(whoIsQuestions, charPlaying, answerDiv, whoIsCharacters, possibleName);
+            whoIsCategories(whoIsQuestions, charPlaying, answerDiv/* ,whoIsCharacters, possibleName*/);
         });
 
         solutionButton.addEventListener('click', () => {
@@ -163,7 +164,7 @@ export default function createWhoIsWho () {
                 possibleName.textContent = '';
             } else {
                 attempts --;
-                //answerDiv.textContent =  attempts > 0 ? '¡Prueba otra vez! Solo tienes un intento más': '¡JUEGA OTRA VEZ!';
+                answerDiv.textContent =  attempts > 0 ? '¡Prueba otra vez! Solo tienes un intento más': '¡JUEGA OTRA VEZ!';
                 if (attempts === 0){
                     whoIsCharacters.style.display = 'none';
                     possibleName.textContent = '';

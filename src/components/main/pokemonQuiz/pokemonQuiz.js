@@ -18,9 +18,12 @@ export function createPokemonQuiz () {
 
    const pokeStart = document.createElement('button');
    pokeStart.className = 'buttonStart';
-   pokeStart.textContent="Mostrar un pokemon aleatorio";
+   pokeStart.textContent = "Mostrar un pokemon aleatorio";
    pokeStart.addEventListener('click', async ()=>{
       try{
+         answer.textContent = '';
+         pokeShowed.innerHTML = '';
+
          const pokemon = await fetchApi();
          currentPokemon = pokemon;
          printPokemon(pokemon, pokeShowed);
