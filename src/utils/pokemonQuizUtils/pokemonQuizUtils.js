@@ -5,7 +5,7 @@ export const keepPoints = (score) => {
 }
 
 export const loadPoints = () => {
-   const savedScore =localStorage.getItem('scorePokemonQuiz');
+   const savedScore = localStorage.getItem('scorePokemonQuiz');
    return savedScore ? JSON.parse(savedScore) : 0;
 }
 
@@ -106,7 +106,7 @@ export function randomType(currentPokemon, score){
 
          if (intentos >= 2) {
             pokeButtonChoose.innerHTML = '';
-            answer.textContent = 'Has agotado los dos intentos 😔 vuelve a empezar';
+            answer.textContent = 'Has agotado los dos intentos 😔 la ronda ha acabado';
             resetPoints(score);
          }
       })

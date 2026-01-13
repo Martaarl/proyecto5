@@ -1,14 +1,15 @@
-import { loadScore } from '../../../utils/pokemonQuizUtils/pokemonQuizUtils';
+//import { loadScore } from '../../../utils/pokemonQuizUtils/pokemonQuizUtils';
+import { keepPoints, loadPoints, loadScore, resetPoints } from '../../../utils/scoreUtils';
+
 import './pokemonQuiz.css';
 
-import { fetchApi, printPokemon, randomType, resetPoints} from "/src/utils/pokemonQuizUtils/pokemonQuizUtils";
+import { fetchApi, printPokemon, randomType} from "/src/utils/pokemonQuizUtils/pokemonQuizUtils";
 
-export function createPokemonQuiz () {
-   const section  = document.querySelector('.gameContainer');
+export function createPokemonQuiz (container) {
+   container.innerHTML = '';
 
    const pokeBoard = document.createElement('section');
    pokeBoard.className = 'pokeBoard';
-   pokeBoard.innerHTML = "";
 
    const pokeButtonsDiv = document.createElement('div');
    pokeButtonsDiv.className ='pokeButtonsDiv';
@@ -23,13 +24,14 @@ export function createPokemonQuiz () {
       try{
          answer.textContent = '';
          pokeShowed.innerHTML = '';
+         pokeButtonChoose.innerHTML = '';
 
          const pokemon = await fetchApi();
          currentPokemon = pokemon;
          printPokemon(pokemon, pokeShowed);
 
          if (currentPokemon && currentPokemon.types) {
-            randomType(currentPokemon, score);
+            randomType(currentPokemon, answer, currentPokemon);
          }
       } catch (error){
          console.error(error);
@@ -45,7 +47,7 @@ export function createPokemonQuiz () {
    answer.className = 'answer';
 
    pokeButtonsDiv.appendChild(pokeStart);
-   pokeBoard.append(pokeButtonsDiv, pokeShowed, pokeButtonChoose, answer);
+   pokeBoard.append(pokeButtonsDiv, pokeShowed, answer);
 
    const scoreDiv = document.createElement('div');
     scoreDiv.className = 'scoreGame';
@@ -64,10 +66,10 @@ export function createPokemonQuiz () {
     pokeAside.className = 'pokeAside';
     pokeAside. textContent = 'Consigue la máxima puntuación posible ¡Solo tienes dos intentos por Pokemon!';
 
-    section.append(pokeBoard,pokeAside, scoreDiv);
+    container.append(pokeBoard,pokeAside, scoreDiv);
 
-    loadScore(score);
+    loadScore(score, 'pokemon');
 
-    reButton.addEventListener('click', () =>  resetPoints(score));
+    reButton.addEventListener('click', () =>  resetPoints(score, 'pokemon'));
 
 }

@@ -5,7 +5,6 @@ import './threeInaRow.css';
 export default function createThreeInARow (container) {
 
    container.innerHTML ='';
-   const section = document.querySelector('.gameContainer');
 
     let board = Array(9).fill("");
     let currentPlayer = "X";
@@ -43,7 +42,7 @@ export default function createThreeInARow (container) {
     })
 
     gameAlert.append(alertText, alertButton);
-    section.appendChild(gameAlert);
+    container.appendChild(gameAlert);
 
     const scoreDiv = document.createElement('div');
     scoreDiv.className = 'scoreGame';
@@ -65,7 +64,7 @@ export default function createThreeInARow (container) {
     const threeInAside = document.createElement('aside');
     threeInAside.className = 'threeInAside';
     threeInAside.textContent = 'Juego a dos jugadores ¡Intenta completar tu línea antes que tu rival!';
-    section.append(threeIn, threeInAside, scoreDiv);
+    container.append(threeIn, threeInAside, scoreDiv);
 
     loadScore(points);
 
@@ -89,6 +88,11 @@ export default function createThreeInARow (container) {
         pointsData[currentPlayer] +=5;
         keepPoints(pointsData);
         loadScore(points);
+
+        setTimeout(()=>{
+            gameAlert.classList.add('hidden');
+            createThreeInARow(container)
+        }, 2000);
         return;
     }
 
@@ -98,6 +102,14 @@ export default function createThreeInARow (container) {
         pointsData.empate += 1;
         keepPoints(pointsData);
         loadScore(points);
+
+        gameAlert.classList.remove('hidden');
+        
+        setTimeout(() => {
+            gameAlert.classList.add('hidden');
+            createThreeInARow(container);
+        }, 1500);
+        
         return
     }
 

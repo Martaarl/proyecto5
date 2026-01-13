@@ -1,6 +1,4 @@
 
-
-
 export default function playNow (createGame) {
 
     let gameContainer = document.querySelector('.gameContainer');

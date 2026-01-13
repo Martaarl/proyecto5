@@ -1,0 +1,37 @@
+[
+        { "nombre": "Clara", "piel": "clara", "cabello": "rubio", "gafas": true, "camiseta": "roja", "accesorio": "no", "image": "/assets/characters/1.png"},
+        { "nombre": "Pepe","piel": "clara", "cabello": "calvo", "gafas": true, "camiseta": "azul", "accesorio": "no", "image": "/assets/characters/2.png"},
+        { "nombre": "Úrsula","piel": "clara", "cabello": "pelirrojo", "gafas": false, "camiseta": "verde", "accesorio": "no", "image": "/public/assets/characters/3.png" },
+        { "nombre": "Raquel","piel": "clara", "cabello": "negro", "gafas": false, "camiseta": "rosa", "accesorio": "no" , "image": "/public/assets/characters/4.png"},
+        { "nombre": "Sergio","piel": "clara", "cabello": "pelirrojo", "gafas": false, "camiseta": "azul", "accesorio": "no", "image": "/public/assets/characters/5.png" },
+
+        { "nombre": "Nacho","piel": "clara", "cabello": "castaño ", "gafas": false, "camiseta": "amarilla", "accesorio": "gorro", "image": "/public/assets/characters/6.png" },
+        { "nombre": "Alfredo","piel": "clara", "cabello": "negro", "gafas": true, "camiseta": "verde", "accesorio": "no", "image": "/public/assets/characters/7.png" },
+        { "nombre": "Michael","piel": "clara", "cabello": "negro", "gafas": false, "camiseta": "verde", "accesorio": "sombrero", "image": "/public/assets/characters/8.png" },
+        { "nombre": "Nadia","piel": "oscura", "cabello": "negro", "gafas": true, "camiseta": "roja", "accesorio": "no", "image": "/public/assets/characters/9.png" },
+        { "nombre": "Diego","piel": "clara", "cabello": "calvo", "gafas": false, "camiseta": "azul", "accesorio": "no", "image": "/public/assets/characters/10.png" },
+
+        {"nombre": "Ana","piel": "clara", "cabello": "gris", "gafas": false, "camiseta": "roja", "accesorio": "no", "image": "/public/assets/characters/11.png" },
+        { "nombre": "Santi","piel": "clara", "cabello": "marrón", "gafas": false, "camiseta": "azul", "accesorio": "no", "image": "/public/assets/characters/12.png"},
+        { "nombre": "Paqui","piel": "clara", "cabello": "negro", "gafas": true, "camiseta": "turquesa", "accesorio": "no" , "image": "/public/assets/characters/13.png"},
+        { "nombre": "Manuel","piel": "clara", "cabello": "pelirrojo", "gafas": false, "camiseta": "verde", "accesorio": "gorro", "image": "/public/assets/characters/14.png"},
+        { "nombre": "Ricardo","piel": "clara", "cabello": "marrón", "gafas": false, "camiseta": "azul", "accesorio": "no", "image": "/public/assets/characters/15.png" },
+
+        { "nombre": "Alba","piel": "oscura", "cabello": "negro", "gafas": false, "camiseta": "roja", "accesorio": "no", "image": "/public/assets/characters/16.png"},
+        { "nombre": "Juan","piel": "clara", "cabello": "pelirrojo", "gafas": false, "camiseta": "verde", "accesorio": "no", "image": "/public/assets/characters/17.png"},
+        { "nombre": "Esmeralda","piel": "clara", "cabello": "gris", "gafas": true, "camiseta": "roja", "accesorio": "no", "image": "/public/assets/characters/18.png"},
+        { "nombre": "Toni","piel": "clara", "cabello": "rubio", "gafas": true, "camiseta": "negra", "accesorio": "no", "image": "/public/assets/characters/19.png"},
+        { "nombre": "Flora","piel": "clara", "cabello": "pelirrojo", "gafas": false, "camiseta": "azul", "accesorio": "no", "image": "/public/assets/characters/20.png"},
+
+        { "nombre": "Neha","piel": "clara", "cabello": "pelirrojo", "gafas": false, "camiseta": "negra", "accesorio": "no", "image": "/public/assets/characters/21.png"},
+        { "nombre": "Ron","piel": "clara", "cabello": "marrón", "gafa": true, "camiseta": "azul", "accesorio": "gorro", "image": "/public/assets/characters/22.png"},
+        { "nombre": "Teresa","piel": "clara", "cabello": "rubio", "gafas": true, "camiseta": "negra", "accesorio": "no" , "image": "/public/assets/characters/23.png"},
+        { "nombre": "Susana","piel": "clara", "cabello": "marrón", "gafas": false, "camiseta": "verde", "accesorio": "no", "image": "/public/assets/characters/24.png" },
+        { "nombre": "Rubén","piel": "clara", "cabello": "pelirrojo", "gafas": true, "camiseta": "amarilla", "accesorio": "no", "image": "/public/assets/characters/25.png" },
+
+        { "nombre": "Kim","piel": "oscura", "cabello": "negro", "gafas": false, "camiseta": "negra", "accesorio": "no", "image": "/public/assets/characters/26.png" },
+        { "nombre": "Rita","piel": "clara", "cabello": "pelirrojo", "gafas": false, "camiseta": "verde", "accesorio": "no", "image": "/public/assets/characters/27.png"},
+        { "nombre": "Natalia","piel": "clara", "cabello": "gris", "gafas": true, "camiseta": "roja", "accesorio": "no", "image": "/public/assets/characters/28.png"},
+        { "nombre": "Fran","piel": "clara", "cabello": "rubio", "gafas": true, "camiseta": "negra", "accesorio": "no", "image": "/public/assets/characters/29.png"},
+        { "nombre": "Flora","piel": "clara", "cabello": "pelirrojo", "gafas": false, "camiseta": "azul", "accesorio": "no", "image": "/public/assets/characters/30.png"}
+    ]

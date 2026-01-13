@@ -16,7 +16,9 @@ export default function whoIsCategories (whoIsQuestion, charPlaying, answerDiv )
             const options = categories[category][index];
             const button = document.createElement('button');
             button.textContent = options;
-            button.addEventListener('click', () => checkQuestions(charPlaying, category, options, answerDiv));
+            button.addEventListener('click', () => {
+                answerDiv.textContent = '',
+                checkQuestions(charPlaying, category, options, answerDiv)});
             categoryDiv.appendChild(button);
 
         }
@@ -66,6 +68,8 @@ export function resetScoreWho (){
 }
 
 export function checkQuestions (charPlaying, category, options, answerDiv, savedScore) {
+    answerDiv.textContent = '';
+
     const whoIsCharacters = document.querySelector('.whoIsCharacters');
     const possibleName = document.querySelector('.solution');
     const whoIsQuestions = document.querySelector('.whoIsQuestions');
