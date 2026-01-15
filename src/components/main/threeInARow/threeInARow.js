@@ -1,7 +1,9 @@
-import { keepPoints, loadPoints, loadScore, resetPoints, resetGame} from "/src/utils/threeInARowUtils/threeInARowUtils";
+
 import './threeInaRow.css';
+import { getScore, resetScore, saveScore } from "../../../utils/scoreUtils";
+import { loadThreeInScore } from '../../../utils/threeInARowUtils/threeInARowUtils';
 
-
+const SCORE_KEY = 'threeInARowScore';
 export default function createThreeInARow (container) {
 
    container.innerHTML ='';
@@ -38,7 +40,7 @@ export default function createThreeInARow (container) {
     alertButton.className = 'alertButton';
     alertButton.addEventListener('click', () =>{
         gameAlert.classList.add('hidden');
-        resetGame(createThreeInARow, section);
+        resetGame(createThreeInARow, container);
     })
 
     gameAlert.append(alertText, alertButton);
@@ -47,9 +49,8 @@ export default function createThreeInARow (container) {
     const scoreDiv = document.createElement('div');
     scoreDiv.className = 'scoreGame';
 
-    let points= document.createElement('p');
-    points.className = 'points';
-    points.textContent = `❎ X: 0 pts | 🅾️ O: 0 | ＝ Empates: 0`;
+    const scoreElement = document.createElement('p');
+    scoreElement.className = 'points';
 
     const reButton = document.createElement('button');
     reButton.className='resetPoints';
@@ -59,17 +60,21 @@ export default function createThreeInARow (container) {
     resetButton.className ='resetGame';
     resetButton.textContent = '🔁 Juega otra vez';
 
-    scoreDiv.append(points, reButton, resetButton);
+    scoreDiv.append(scoreElement, reButton, resetButton);
 
     const threeInAside = document.createElement('aside');
     threeInAside.className = 'threeInAside';
     threeInAside.textContent = 'Juego a dos jugadores ¡Intenta completar tu línea antes que tu rival!';
     container.append(threeIn, threeInAside, scoreDiv);
 
-    loadScore(points);
+    loadThreeInScore(scoreElement, SCORE_KEY);
 
-    reButton.addEventListener('click', () =>  resetPoints(points));
-    resetButton.addEventListener('click', () => resetGame(createThreeInARow, section));
+    reButton.addEventListener('click', () => {
+        resetScore(scoreElement, SCORE_KEY)
+        loadThreeInScore(scoreElement, SCORE_KEY);
+        });
+
+    resetButton.addEventListener('click', () => createThreeInARow (container));
     
     function handleClick(cell,index){
     
@@ -79,15 +84,22 @@ export default function createThreeInARow (container) {
     cell.className = 'taken';
     cell.disabled= true;
 
-    let pointsData = loadPoints();
+    let pointsData = getScore(SCORE_KEY, { X: 0, O: 0, empate: 0 } );
+    if (typeof pointsData !== 'object' || pointsData === null) {
+        pointsData = { X: 0, O: 0, empate: 0 };
+    }
+    pointsData.X ??= 0;
+    pointsData.O ??= 0;
+    pointsData.empate ??= 0;
+
 
     if (checkWin(currentPlayer)){
         gameActive = false;
         alertText.textContent = (`${currentPlayer} ha ganado la partida: +5ptos`);
         gameAlert.classList.remove('hidden');
         pointsData[currentPlayer] +=5;
-        keepPoints(pointsData);
-        loadScore(points);
+        saveScore(SCORE_KEY, pointsData);
+        loadThreeInScore(scoreElement, SCORE_KEY);
 
         setTimeout(()=>{
             gameAlert.classList.add('hidden');
@@ -100,8 +112,8 @@ export default function createThreeInARow (container) {
         alertText.textContent=('Ha habido un empate. +1 pto. ');
         gameActive = false;
         pointsData.empate += 1;
-        keepPoints(pointsData);
-        loadScore(points);
+        saveScore(SCORE_KEY, pointsData);
+        loadThreeInScore(scoreElement, SCORE_KEY);
 
         gameAlert.classList.remove('hidden');
         

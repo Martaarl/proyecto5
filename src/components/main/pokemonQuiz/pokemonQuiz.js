@@ -1,9 +1,10 @@
-//import { loadScore } from '../../../utils/pokemonQuizUtils/pokemonQuizUtils';
-import { keepPoints, loadPoints, loadScore, resetPoints } from '../../../utils/scoreUtils';
+
+import {loadScore, resetScore} from '../../../utils/scoreUtils';
 
 import './pokemonQuiz.css';
-
 import { fetchApi, printPokemon, randomType} from "/src/utils/pokemonQuizUtils/pokemonQuizUtils";
+
+const SCORE_KEY = 'pokemonScore';
 
 export function createPokemonQuiz (container) {
    container.innerHTML = '';
@@ -16,6 +17,14 @@ export function createPokemonQuiz (container) {
 
    const pokeShowed = document.createElement('div');
    pokeShowed.className = 'pokeShowed';
+
+   const pokeButtonChoose = document.createElement('div');
+   pokeButtonChoose.className = 'pokeButtonChoose';
+
+   const answer = document.createElement('div');
+   answer.className = 'answer';
+
+   let currentPokemon;
 
    const pokeStart = document.createElement('button');
    pokeStart.className = 'buttonStart';
@@ -31,30 +40,21 @@ export function createPokemonQuiz (container) {
          printPokemon(pokemon, pokeShowed);
 
          if (currentPokemon && currentPokemon.types) {
-            randomType(currentPokemon, answer, currentPokemon);
+            randomType(currentPokemon,score);
          }
       } catch (error){
          console.error(error);
       }
    });
 
-   let currentPokemon;
-
-   const pokeButtonChoose = document.createElement('div');
-   pokeButtonChoose.className = 'pokeButtonChoose';
-
-   const answer = document.createElement('div');
-   answer.className = 'answer';
-
    pokeButtonsDiv.appendChild(pokeStart);
-   pokeBoard.append(pokeButtonsDiv, pokeShowed, answer);
-
+   pokeBoard.append(pokeButtonsDiv, pokeShowed, pokeButtonChoose, answer);
+   
    const scoreDiv = document.createElement('div');
-    scoreDiv.className = 'scoreGame';
+   scoreDiv.className = 'scoreGame';
 
-    let score= document.createElement('p');
-    score.className = 'scorePoke';
-    score.textContent = `pokeJugador: 0 pts`;
+   let score = document.createElement('p');
+   score.className = 'scorePoke';
 
     const reButton = document.createElement('button');
     reButton.className='resetPoints';
@@ -68,8 +68,9 @@ export function createPokemonQuiz (container) {
 
     container.append(pokeBoard,pokeAside, scoreDiv);
 
-    loadScore(score, 'pokemon');
+    loadScore(score, SCORE_KEY);
 
-    reButton.addEventListener('click', () =>  resetPoints(score, 'pokemon'));
+    reButton.addEventListener('click', () =>  resetScore(score, SCORE_KEY));
 
+   
 }

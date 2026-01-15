@@ -1,5 +1,5 @@
 import createCards from '../cards/cards';
-import './header.css'
+import './header.css';
 
 export default function createHeader () {
 

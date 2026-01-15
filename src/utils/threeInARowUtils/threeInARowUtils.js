@@ -1,27 +1,17 @@
 
-export const keepPoints = (newPoints) => {
-    localStorage.setItem('pointsThreeIn', JSON.stringify(newPoints));
+
+import { getScore } from "../scoreUtils";
+
+export function loadThreeInScore(scoreElement, scoreKey = 'threeInARowScore') {
+    let pointsData = getScore(scoreKey, { X: 0, O: 0, empate: 0 });
+
+    if (typeof pointsData !== 'object' || pointsData === null) {
+        pointsData = { X: 0, O: 0, empate: 0 };
+    }
+
+    pointsData.X = typeof pointsData.X === 'number' ? pointsData.X : 0;
+    pointsData.O = typeof pointsData.O === 'number' ? pointsData.O : 0;
+    pointsData.empate = typeof pointsData.empate === 'number' ? pointsData.empate : 0;
+
+    scoreElement.textContent = `❎ X: ${pointsData.X} pts | 🅾️ O: ${pointsData.O} pts | ＝ Empates: ${pointsData.empate}`;
 }
-
-export const loadPoints = () => {
-    console.log('what');
-    const dataPoints =localStorage.getItem('pointsThreeIn');
-    return dataPoints ? JSON.parse(dataPoints) : {X: 0, O: 0, empate: 0};
-}
-
-export const loadScore = (pointsRe) => {
-    let currentPoints = loadPoints ();
-    pointsRe.textContent = `❎ X: ${currentPoints.X} pts | 🅾️ O: ${currentPoints.O} | ＝ Empates: ${currentPoints.empates}`;}
-
-export function resetPoints(pointsRe){
-    const resetPoints = {X:0, O: 0, empates: 0};
-    keepPoints(resetPoints);
-    loadScore(pointsRe);
-}
-
-export function resetGame (createGameFn, container) {
-    container.innerHTML ='';
-    createGameFn(container);
-}
-
-

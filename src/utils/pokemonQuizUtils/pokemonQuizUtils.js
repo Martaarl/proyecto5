@@ -1,32 +1,18 @@
 
+import { getScore, loadScore, resetScore, saveScore } from "../scoreUtils";
 
-export const keepPoints = (score) => {
-   localStorage.setItem('scorePokemonQuiz', JSON.stringify(score));
-}
-
-export const loadPoints = () => {
-   const savedScore = localStorage.getItem('scorePokemonQuiz');
-   return savedScore ? JSON.parse(savedScore) : 0;
-}
-
-export const loadScore = (pointsElement) => {
-   const score =loadPoints();
-   pointsElement.textContent = `Puntuación: ${score} pts`;
-}
-export function resetPoints(pointsElement){
-   keepPoints(0);
-   loadScore(pointsElement);
-}
+const SCORE_KEY = 'pokemonScore';
 
  export async function fetchApi() {
    const id = Math.floor(Math.random() * 898)+1;
    const url = 'https://pokeapi.co/api/v2/pokemon/';
    const response = await fetch (`${url}${id}`);
 
-   if(!response.ok) return error ('Error obteniendo el Pokemon');
+   if(!response.ok){
+      throw new Error ('Error obteniendo el Pokemon')
+   };
    
-   const results = await response.json();
-   return results;
+   return await response.json();
 }
 
 export function printPokemon(pokemon, container) {
@@ -39,7 +25,7 @@ export function printPokemon(pokemon, container) {
    `;
 }
 
-export function checkPokemon(pokemon, currentType, pointsElement) {
+export function checkPokemon(pokemon, currentType, scoreElement, SCORE_KEY) {
   if(!pokemon || !pokemon.types){
      return 'no hay ningún pokemon';
   }
@@ -54,17 +40,16 @@ export function checkPokemon(pokemon, currentType, pointsElement) {
       pokeButtonChoose.innerHTML='';
       answer.textContent='';
 
-      let currentScore = loadPoints();
+      let currentScore = getScore(SCORE_KEY);
       currentScore++;
-      keepPoints(currentScore);
-      loadScore(pointsElement);
+      saveScore(SCORE_KEY, currentScore);
+      loadScore(scoreElement, SCORE_KEY);
    
      return '¡Has acertado!'; 
   } else {
      return '¡Vaya! Vuelve a intentarlo'
   }
 }
-
 export function randomType(currentPokemon, score){
    const pokemonType = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy", "unknown", "shadow"];  
    const types = currentPokemon.types.map(t=>t.type.name);
@@ -79,7 +64,7 @@ export function randomType(currentPokemon, score){
 }              
 
    const pokeButtonChoose = document.querySelector('.pokeButtonChoose');
-   pokeButtonChoose.innerHTML='';
+   pokeButtonChoose.innerHTML = '';
 
    let intentos= 0;
 
@@ -93,7 +78,7 @@ export function randomType(currentPokemon, score){
             return 
          }
 
-         const result = checkPokemon(currentPokemon, type, score);
+         const result = checkPokemon(currentPokemon, type, score, SCORE_KEY);
          intentos++;
 
          const answer = document.querySelector('.answer');
@@ -107,7 +92,6 @@ export function randomType(currentPokemon, score){
          if (intentos >= 2) {
             pokeButtonChoose.innerHTML = '';
             answer.textContent = 'Has agotado los dos intentos 😔 la ronda ha acabado';
-            resetPoints(score);
          }
       })
 
